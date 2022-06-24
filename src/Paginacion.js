@@ -1,12 +1,28 @@
-export default function Paginacion(props){
+export default function Pagination(props){
+
+    const getPages = () => {
+        const result = [];
+
+        for (let index = 0; index < props.total; index++) {
+            let page = index+1;
+            result.push(
+           
+                <a 
+                onClick={()=> props.onChange(page)} 
+                className={props.pagina === (page) ? "active" : ""} 
+                >{(page)}
+                </a>
+            )
+        }
+        return result;
+    }
+
 
     return (
         <div className="topbar-filter">
         <div className="pagination2">
             <span>Page {props.pagina} of {props.total}:</span>
-            <a className="active" href="#">1</a>
-            <a href="#">2</a>
-            <a href="#"><i className="ion-arrow-right-b"></i></a>
+            {getPages()}
         </div>
     </div>
     );       
